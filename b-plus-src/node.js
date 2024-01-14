@@ -92,7 +92,7 @@ class Node {
     }
 
     #addBlock(block) {
-        const index = this.#findKeyIndex(block.blockKey)
+        const index = this.#findKeyIndex(block.blockKey);
         this.#throwErrorIfKeyIsNotUnique(block.blockKey, index);
         this.#placeKeyInArray(block.blockKey, index);
         this.#placeBlockInArray(block, index);
@@ -102,7 +102,7 @@ class Node {
     #findKeyIndex(key) {
         const keyCount = this.keyCount;
         for (let i = 0; i < keyCount; i++) {
-            if (key <= this.#keyArray[i]) {
+            if (key < this.#keyArray[i]) {
                 return i;
             }
         }
@@ -110,7 +110,7 @@ class Node {
     }
 
     #throwErrorIfKeyIsNotUnique(key, index) {
-        if (this.#objectArray[index] != undefined && this.#objectArray[index].blockKey == key) {
+        if (this.#objectArray[index-1] != undefined && this.#objectArray[index-1].blockKey == key) {
             throw new Error("Key has to be unique.");
         }
     }

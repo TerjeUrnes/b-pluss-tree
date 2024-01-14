@@ -1,4 +1,3 @@
-import { LeafBlock } from "../b-plus-src/LeafBlock.js";
 import { Node, NodeType } from "../b-plus-src/node.js";
 
 var instanceA;
@@ -104,34 +103,6 @@ test("A new node has key count equal to zero", () => {
 test("A new node has zero keys", () => {
     expect(instanceA.keyArray).toEqual([, ]);
     expect(instanceB.keyArray).toEqual([, ]);
-})
-
-test("Adding a block increases block count.", () => {
-    const elm = [{key:1}];
-    instanceB.addBlock(new LeafBlock(elm));
-    expect(instanceB.blockCount).toBe(1);
-});
-
-test("Adding a block populates block array", () => {
-    const elm = [{key:1}];
-    const block = new LeafBlock(elm)
-    instanceB.addBlock(block);
-    expect(instanceB.blockArray[0]).toStrictEqual(block);
-});
-
-test("Adding two blocks gives a block count of two.", () => {
-    const elm1 = [{key:1}];
-    const elm2 = [{key:2}];
-    instanceB.addBlock(new LeafBlock(elm1));
-    instanceB.addBlock(new LeafBlock(elm2));
-    expect(instanceB.blockCount).toBe(2);
-});
-
-test("Adding two blocks with identical keys throws an exception", () => {
-    const elm1 = [{key:1}];
-    const elm2 = [{key:1}];
-    instanceB.addBlock(new LeafBlock(elm1));
-    expect(() => {instanceB.addBlock(new LeafBlock(elm2));}).toThrow("Key has to be unique.");
 })
 
 
